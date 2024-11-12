@@ -1,13 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/bse/res/styles/app_styles.dart';
+import 'package:mobile_app/bse/widgets/app_column_text_layout.dart';
 import 'package:mobile_app/bse/widgets/app_layoutbuilder_widget.dart';
 import 'package:mobile_app/bse/widgets/big.circle.dart';
 import 'package:mobile_app/bse/widgets/big_dot.dart';
+import 'package:mobile_app/bse/widgets/text_style_fourth.dart';
 import 'package:mobile_app/bse/widgets/text_style_third.dart';
 
 class TicketView extends StatelessWidget {
-  const TicketView({super.key});
+  final Map<String, dynamic> ticket;
+  final bool wholeScreen;
+  const TicketView({super.key, required this.ticket, this.wholeScreen=false});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class TicketView extends StatelessWidget {
       width: size.width*0.85,
       height: 189,
       child: Container(
-        margin: const EdgeInsets.only(right: 16),
+        margin:  EdgeInsets.only(right: wholeScreen==true?0:16),
         child: Column(
           children: [
             //blue part of the ticket
@@ -32,9 +35,10 @@ class TicketView extends StatelessWidget {
                   //show departure and destination with icons first line
                   Row(
                     children: [
-                      const TextStyleThird(text: "NYC",),
+                       TextStyleThird(text: ticket["from"]["code"],),
                       Expanded(child: Container()),
                       const BigDot(),
+                      //ticket flying icon
                       Expanded(
                           child: Stack(
                             children: [
@@ -51,34 +55,23 @@ class TicketView extends StatelessWidget {
                       ],)),
                       const BigDot(),
                       Expanded(child: Container()),
-                      const TextStyleThird(text: "NYC",),
+                       TextStyleThird(text: ticket["to"]["code"],),
                     ],
                   ),
                   const SizedBox(height: 3,),
                   //show departure and destination names with time
                   Row(
                     children: [
-                      SizedBox(
+                       SizedBox(
                         width: 100,
-                        child: Text(
-                          "New-York",
-                          style: AppStyles.headLineStyle4
-                              .copyWith(color: Colors.white),
-                        ),
+                        child:  TextStyleFourth(text: ticket["from"]["name"],),
                       ),
                       Expanded(child: Container()),
-                      Text(
-                        "8H 30M",
-                        style: AppStyles.headLineStyle4.copyWith(color: Colors.white),
-                      ),
+                       TextStyleFourth(text: ticket["flying_time"],),
                       Expanded(child: Container()),
-                      SizedBox(
+                       SizedBox(
                         width: 100,
-                        child: Text(
-                          "London",
-                          textAlign: TextAlign.end,
-                          style: AppStyles.headLineStyle4.copyWith(color: Colors.white),
-                        ),
+                        child:  TextStyleFourth(text: ticket["to"]["name"], align: TextAlign.end,),
                       )
                     ],
                   )
@@ -107,43 +100,32 @@ class TicketView extends StatelessWidget {
                       bottomLeft: Radius.circular(21),
                       bottomRight: Radius.circular(21))
               ),
-              child: Column(
+              child:  Column(
                 children: [
                   //show departure and destination with icons first line
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "I May", style: AppStyles.headLineStyle3.copyWith(color: Colors.white),
+                      AppColumnTextLayout(
+                        topText: ticket["date"],
+                        bottomText: "DATE",
+                        alignment: CrossAxisAlignment.start,
                       ),
-                      Expanded(child: Container()),
-                      Text(
-                        "08:00 AM", style: AppStyles.headLineStyle3
-                          .copyWith(color: Colors.white),
+                      AppColumnTextLayout(
+                        topText: ticket["departure_time"],
+                        bottomText: "Departure time",
+                        alignment: CrossAxisAlignment.center,
                       ),
-                      Expanded(child: Container()),
-                      Text(
-                        "23", style: AppStyles.headLineStyle3.copyWith(color: Colors.white),
-                      )
+                      AppColumnTextLayout(
+                        topText: ticket["number"].toString(),
+                        bottomText: "Number",
+                        alignment: CrossAxisAlignment.end,
+                      ),
+
                     ],
                   ),
-                  const SizedBox(height: 3,),
-                  //show departure and destination names with time
-                  Row(
-                    children: [
-                      Text(
-                        "Date", style: AppStyles.headLineStyle3.copyWith(color: Colors.white),
-                      ),
-                      Expanded(child: Container()),
-                      Text(
-                        "Departure time",
-                        style: AppStyles.headLineStyle3.copyWith(color: Colors.white),
-                      ),
-                      Expanded(child: Container()),
-                      Text(
-                        "Number", style: AppStyles.headLineStyle3.copyWith(color: Colors.white),
-                      )
-                    ],
-                  )
+                  SizedBox(height: 3,),
+
                 ],
               ),
             ),
