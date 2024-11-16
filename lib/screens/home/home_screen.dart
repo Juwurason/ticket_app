@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 40),
                  AppDoubleText(bigTest: 'Hotels', smallTest: 'View all',
                      func: (){
-
+                       Navigator.pushNamed(context, AppRoutes.allHotels);
                      },
                  ),
                 const SizedBox(height: 20),
