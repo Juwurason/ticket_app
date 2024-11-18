@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/bse/res/styles/app_styles.dart';
 import 'package:mobile_app/bse/utils/app_routes.dart';
 import 'package:mobile_app/bse/widgets/app_double_text.dart';
+import 'package:mobile_app/bse/widgets/heading_text.dart';
 import 'package:mobile_app/bse/widgets/ticket_view.dart';
 import 'package:mobile_app/screens/home/widgets/hotel.dart';
 
@@ -45,10 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(
                           height: 5,
                         ),
-                        Text(
-                          "Book Tickets",
-                          style: AppStyles.headLineStyle1,
-                        )
+
+                        const HeadingText(text: "Book Tickets", isColor: false,),
                       ],
                     ),
                     Container(

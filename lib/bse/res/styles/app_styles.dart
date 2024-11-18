@@ -15,9 +15,11 @@ class AppStyles {
   static Color ticketColor = const Color(0xFFFFFFFF);
   static Color dotColor = const Color(0xFF8ACCF7);
   static Color planeSecondColor = const Color(0xFFBACCF7);
+  static Color profileTextColor = const Color(0xFF526799);
   static TextStyle textStyle = TextStyle(fontSize: 16, color: textColor,
   fontWeight: FontWeight.w500);
   static Color ticketOrange = const Color(0xFFF37B67);
+  static Color profileLocationColor = const Color(0xFFFEF4F3);
 
   static TextStyle headLineStyle1 =
       TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: textColor);
