@@ -4,7 +4,7 @@ import 'package:mobile_app/screens/home/all_hotels.dart';
 import 'package:mobile_app/screens/home/all_tickets.dart';
 import 'package:mobile_app/screens/hotel_detail.dart';
 import 'package:mobile_app/screens/ticket/ticket_screen.dart';
-
+import 'package:get/get.dart';
 import 'bse/utils/app_routes.dart';
 
 void main() {
@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        AppRoutes.homePage: (context)=> const BottomNavBar(),
+        AppRoutes.homePage: (context)=> BottomNavBar(),
         AppRoutes.allTickets: (context)=>const AllTickets(),
         AppRoutes.ticketScreen:(context)=>const TicketScreen(),
         AppRoutes.allHotels:(context)=>const AllHotels(),
